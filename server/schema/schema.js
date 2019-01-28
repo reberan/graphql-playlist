@@ -107,6 +107,17 @@ const Mutation = new GraphQLObjectType({
                 });
                 return book.save();
             }
+        },
+        deleteBook: {
+            type: BookType,
+            description: 'Delete a book with id and return the article that was deleted.',
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args){
+                return Book.delete( args.id );
+            }
+
         }
     }
 });
